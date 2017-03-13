@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace DuToanPhanMem.Model
 {
-    class ChiPhiPhanMem:INotifyPropertyChanged
+    public class ChiPhiPhanMem:INotifyPropertyChanged
     {
         private long _giaTriPhanMem;
         private long _chiPhiChung;
         private long _thue;
         private long _tong;
-        private bool _isChanged = false;
+       
 
         public long GiaTriPhanMem
         {
@@ -24,8 +24,8 @@ namespace DuToanPhanMem.Model
                 if (this._giaTriPhanMem != value)
                 {
                     this._giaTriPhanMem = value;
-                    Check();
                     OnPropertyChanged("GiaTriPhanMem");
+                    TinhChiPhi();
                 }
                     
 
@@ -39,8 +39,8 @@ namespace DuToanPhanMem.Model
                 if (this._chiPhiChung != value)
                 {
                     this._chiPhiChung = value;
-                    Check();
                     OnPropertyChanged("ChiPhiChung");
+                    TinhChiPhi();
                 }
 
 
@@ -54,8 +54,8 @@ namespace DuToanPhanMem.Model
                 if (this._thue != value)
                 {
                     this._thue = value;
-                    Check();
                     OnPropertyChanged("Thue");
+                    TinhChiPhi();
                 }
 
 
@@ -76,31 +76,24 @@ namespace DuToanPhanMem.Model
             }
         }
 
-        public bool IsChanged
+
+        
+
+        public void TinhC()
         {
-            get { return this._isChanged; }
-            set
-            {
-                if (this._isChanged != value)
-                {
-                    this._isChanged = value;
-                    OnPropertyChanged("IsChanged");
-                }
-
-
-            }
+            ChiPhiChung = Convert.ToInt64( 0.65f * GiaTriPhanMem);
         }
 
-        public void Check()
+        public void TinhTL()
         {
-            if (GiaTriPhanMem != 0 && ChiPhiChung != 0 && Thue != 0)
-                IsChanged = true;
-            else
-                IsChanged = false;
+            
+            Thue = Convert.ToInt64( 0.06f * (GiaTriPhanMem + ChiPhiChung));
         }
 
         public void TinhChiPhi()
         {
+            TinhC();
+            TinhTL();
             Tong = GiaTriPhanMem + ChiPhiChung + Thue;
         }
 

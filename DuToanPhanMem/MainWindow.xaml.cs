@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -22,12 +23,19 @@ namespace DuToanPhanMem
     /// </summary>
     public partial class MainWindow : Window
     {
-        ChiPhiPhanMem cp = new ChiPhiPhanMem { GiaTriPhanMem = 0, ChiPhiChung = 0,  Thue = 0, Tong=0};
+        
+
+        public ChiPhiPhanMem Data { get; set; }
+
+        private BangDinhGiaPhanMem nextWindow;
 
         public MainWindow()
         {
+            
             InitializeComponent();
-            this.DataContext = cp;
+            Data = new ChiPhiPhanMem();
+            this.DataContext = Data;
+            nextWindow = new BangDinhGiaPhanMem(this);
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -38,27 +46,30 @@ namespace DuToanPhanMem
 
         private void HlGiaTri_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            nextWindow.Show();
         }
-
-        private void HlChiPhi_OnClick(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void HlThue_OnClick(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
         
 
-        private void BtnDuToan_OnClick(object sender, RoutedEventArgs e)
+        private void BtnNext_OnClick(object sender, RoutedEventArgs e)
         {
-            cp.TinhChiPhi();
-            BtnDuToan.IsEnabled = false;
+            nextWindow.Show();
         }
 
-       
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            nextWindow.window1.CanClose = true;
+            nextWindow.window2.CanClose = true;
+            nextWindow.window3.CanClose = true;
+            nextWindow.window4.CanClose = true;
+            nextWindow.CanClose = true;
+
+            nextWindow.window1.Close();
+            nextWindow.window2.Close();
+            nextWindow.window3.Close();
+            nextWindow.window4.Close();
+            nextWindow.Close();
+            base.OnClosing(e);
+        }
     }
 }

@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=10.4.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.10.4.0\lib\net\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -55,8 +59,48 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="LongConverter.cs" />
-    <Compile Include="TextBoxChecker.cs" />
+    <Compile Include="BangDinhGiaPhanMem.xaml.cs">
+      <DependentUpon>BangDinhGiaPhanMem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BangHeSoPhucTapMTKN.xaml.cs">
+      <DependentUpon>BangHeSoPhucTapMTKN.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BangHeSoPhucTapKTCN.xaml.cs">
+      <DependentUpon>BangHeSoPhucTapKTCN.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BangTinhDiemTacNhan.xaml.cs">
+      <DependentUpon>BangTinhDiemTacNhan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BangTinhDiemUseCase.xaml.cs">
+      <DependentUpon>BangTinhDiemUseCase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converter\FloatConverter.cs" />
+    <Compile Include="Converter\LongConverter.cs" />
+    <Compile Include="Model\DiemTacNhan.cs" />
+    <Compile Include="Model\DiemUseCase.cs" />
+    <Compile Include="Model\GiaTriPhanMem.cs" />
+    <Compile Include="Model\HeSoPhucTapKTCN.cs" />
+    <Compile Include="Converter\TextBoxChecker.cs" />
+    <Page Include="BangDinhGiaPhanMem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BangHeSoPhucTapMTKN.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BangHeSoPhucTapKTCN.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BangTinhDiemTacNhan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BangTinhDiemUseCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\ChiPhiPhanMem.cs" />
+    <Compile Include="Model\HeSoPhucTapMTKN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -89,6 +134,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
